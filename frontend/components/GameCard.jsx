@@ -1,8 +1,31 @@
-import Draggable from 'react-drag-and-drop'
+import React, {Component} from 'react'
+import { DragSource } from 'react-dnd';
 
-const GameCard = React.createClass({
+import {Items} from '../Constants.js';
+
+const cardSource = {
+  beginDrag(props) {
+    return {};
+  }
+};
+
+function collect(connect, monitor) {
+  return {
+    connectDragSource: connect.dragSource(),
+    isDragging: monitor.isDragging()
+  }
+}
+
+class GameCard extends Component {
+    constructor(props) {
+        super(props)
+    }
+
     render () {
-        return (<Draggable><div className="demo-card-wide mdl-card mdl-shadow--2dp">
+
+        const { connectDragSource, isDragging } = this.props;
+        let style = isDragging ? {display: 'none'} : {};
+        return connectDragSource(<div className="demo-card-wide mdl-card mdl-shadow--2dp" style={style}>
               <div className="mdl-card__title" 
                    style={{ background: this.props.color, color: this.props.side == 'dark' ? '#fff':'#444'}}>
                 <h2 className="mdl-card__title-text">{this.props.name}</h2>
@@ -20,8 +43,9 @@ const GameCard = React.createClass({
                   <i className="material-icons">share</i>
                 </button>
               </div>
-            </div></Draggable>)
+            </div>)
         }
-});
+}
 
-module.exports = GameCard;
+export default DragSource(Items.CARD, cardSource, collect)(GameCard);
+

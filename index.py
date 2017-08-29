@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from flask import Flask, request, session, redirect, url_for
 from flask import render_template, flash, send_from_directory
 import json
@@ -222,4 +225,8 @@ def cards():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(
+        debug=True,
+        host='0.0.0.0'
+        # port=int(options.port)
+        )

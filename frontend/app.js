@@ -1,12 +1,12 @@
+import GameDisposition from './components/GameDisposition.jsx';
+import React from 'react';
+import ReactDOM from 'react-dom';
+
 (function(){
     global.$ = require('jquery');
-    global.React = require('react');
-    global.ReactDOM = require('react-dom');
 
     let cards = [];
 
-
-    const GameDisposition = require('./components/GameDisposition.jsx');
     let app = {
         init: function(){
             let host = document.getElementById('app-block');
