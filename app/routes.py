@@ -5,10 +5,6 @@ from flask import Flask, request, session, redirect, url_for
 from flask import render_template, flash, send_from_directory
 import json
 
-from app import db
-
-app = Flask(__name__)
-
 maincards = [
     {
         'id': 1,

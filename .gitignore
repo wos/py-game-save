@@ -2,6 +2,9 @@
 .idea
 node_modules
 
+*.pyc
+__pycache__/
+
 static/app.js
 
 *.sublime-project

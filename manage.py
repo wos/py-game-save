@@ -6,6 +6,7 @@ from app import index
 
 app = index()
 app.config.from_object(os.environ['APP_SETTINGS'])
+print(app.config)
 manager = Manager(app)
 
 if __name__ == '__main__':
