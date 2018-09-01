@@ -23,26 +23,17 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    # a simple page that says hello
-    @app.route('/hello')
-    def hello():
-        return 'Hello, World!'
-
     return app
 
-def index():
-    app = Flask(__name__)
-    # app.config.from_object(os.environ['APP_SETTINGS'])
-    # print(app.config)
 
-    # db.get_db()
+print(__name__)
+app = create_app()
 
-    db.init_app(app)
-    with app.test_request_context():
-        db.create_all()
 
-    import app.firstmodule.controllers as firstmodule
+# a simple page that says hello
+@app.route('/hello')
+def hello():
+    return 'Hello, World!'
 
-    app.register_blueprint(firstmodule.module)
 
-    return app
+app.run()
