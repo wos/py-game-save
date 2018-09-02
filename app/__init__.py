@@ -1,6 +1,12 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 import os
 from flask import Flask
-from . import db
+from cards import CARDS, PLAYERS
+
+from flask import render_template, send_from_directory
+import json
 
 def create_app(test_config=None):
     # create and configure the app
@@ -34,6 +40,25 @@ app = create_app()
 @app.route('/hello')
 def hello():
     return 'Hello, World!'
+
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    return render_template('index.html')
+
+@app.route('/cards', methods=['GET', 'POST'])
+def cards():
+    return json.dumps({'cards' : CARDS, 'players': PLAYERS})
+
+@app.route('/node_modules/<path:path>')
+def send_node(path):
+    print(path)
+
+    p = os.path.abspath("../node_modules")
+    print p
+    # pass
+    return send_from_directory('node_modules', path)
+
+
 
 
 app.run()
