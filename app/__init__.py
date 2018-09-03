@@ -58,7 +58,12 @@ def send_node(path):
     # pass
     return send_from_directory('node_modules', path)
 
+from app.database import db_session
+
+@app.teardown_appcontext
+def shutdown_session(exception=None):
+    db_session.remove()
 
 
-
-app.run()
+if __name__ == "__main__":
+    app.run()
