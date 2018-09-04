@@ -10,3 +10,4 @@ static/app.js
 *.sublime-project
 *.sublime-workspace
 
+app.db
